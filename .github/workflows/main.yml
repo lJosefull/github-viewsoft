@@ -1,0 +1,28 @@
+name: Draw VIEWSOFT
+
+on:
+  workflow_dispatch:   # se ejecuta manual o automático
+  schedule:
+    - cron: "0 3 * * *"   # todos los días 3am UTC (opcional)
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+
+      - name: Run draw script
+        run: |
+          chmod +x draw.sh
+          ./draw.sh
+
+      - name: Push changes
+        run: |
+          git push
