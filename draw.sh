@@ -1,6 +1,7 @@
 #!/bin/bash
 
-START_DATE="2025-01-05" # DOMINGO
+YEAR=$(date +%Y)
+START_DATE=$(date -d "$YEAR-01-01 last sunday" +%Y-%m-%d)
 COMMIT_MSG="pixel"
 
 get_letter() {
